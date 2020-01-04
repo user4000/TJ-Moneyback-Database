@@ -1,0 +1,27 @@
+USE [db_app_server]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [E].[EVENT](
+	[IdEvent] [bigint] IDENTITY(1,1) NOT NULL,
+	[TimeEvent] [datetime] NOT NULL,
+	[IdMessage] [int] NOT NULL,
+	[IdUser] [int] NOT NULL,
+	[TextEvent] [varchar](4000) COLLATE Cyrillic_General_CS_AI NULL,
+	[TextNote] [varchar](4000) COLLATE Cyrillic_General_CS_AI NULL,
+ CONSTRAINT [PK_A_EVENT] PRIMARY KEY CLUSTERED 
+(
+	[IdEvent] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+
+GO
+
+ALTER TABLE [E].[EVENT] ADD  CONSTRAINT [DF_A_EVENT_date_event]  DEFAULT (getdate()) FOR [TimeEvent]
+GO
+
